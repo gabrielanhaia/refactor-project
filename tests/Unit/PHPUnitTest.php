@@ -14,6 +14,9 @@ use App\Tests\TestCase;
  */
 class PHPUnitTest extends TestCase
 {
+    /**
+     * Method responsible for testing if PHPUnit is working.
+     */
     public function testPhpUnit()
     {
         $this->assertTrue(true);
