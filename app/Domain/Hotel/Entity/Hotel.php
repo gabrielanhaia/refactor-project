@@ -5,7 +5,7 @@ namespace App\Domain\Hotel\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\HotelRepository")
+ * @ORM\Entity(repositoryClass="App\Domain\Hotel\Contract\IHotelRepository")
  *
  * @author Gabriel Anhaia <anhaia.gabriel@gmail.com>
  */

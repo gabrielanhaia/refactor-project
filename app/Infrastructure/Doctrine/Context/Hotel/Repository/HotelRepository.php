@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Repository;
+namespace App\Infrastructure\Doctrine\Context\Hotel\Repository;
 
-use App\Entity\Hotel;
+use App\Domain\Hotel\Contract\IHotelRepository;
+use App\Domain\Hotel\Entity\Hotel;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -12,7 +13,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * @method Hotel[]    findAll()
  * @method Hotel[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class HotelRepository extends ServiceEntityRepository
+class HotelRepository extends ServiceEntityRepository implements IHotelRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

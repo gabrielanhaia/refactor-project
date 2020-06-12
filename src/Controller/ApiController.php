@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Domain\Hotel\Contract\IHotelRepository;
+use App\Infrastructure\Doctrine\Context\Hotel\Repository\HotelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,9 +13,16 @@ class ApiController extends AbstractController
 {
     /**
      * @Route("/api/average", name="average")
+     * @param Request $request
+     * @param IHotelRepository|HotelRepository $hotelRepository
+     *
+     * @return Response
+     * @throws \Exception
      */
-    public function getAverage(Request $request)
+    public function getAverage(Request $request, IHotelRepository $hotelRepository)
     {
+        dd($hotelRepository->findAll());
+
         $hotelId = $request->get('hotelId');
 
         if ($hotelId === null) {
