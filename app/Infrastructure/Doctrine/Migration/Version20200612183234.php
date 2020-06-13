@@ -31,8 +31,8 @@ final class Version20200612183234 extends AbstractMigration
     {
         $this->addSql(
             'CREATE TABLE review (
-                        id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL, 
-                        hotel_id INTEGER NOT NULL, 
+                        id BINARY(16) PRIMARY KEY NOT NULL, 
+                        hotel_id BINARY(16) NOT NULL, 
                         score INTEGER NOT NULL, 
                         comment VARCHAR(255) DEFAULT NULL,
                         FOREIGN KEY (hotel_id) REFERENCES hotel(id)

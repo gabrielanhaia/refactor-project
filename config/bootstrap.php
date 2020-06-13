@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\DBAL\Types\Type;
 use Symfony\Component\Dotenv\Dotenv;
 
 require dirname(__DIR__).'/vendor/autoload.php';
@@ -16,6 +17,9 @@ if (is_array($env = @include dirname(__DIR__).'/.env.local.php') && (!isset($env
     // load all the .env files
     (new Dotenv(false))->loadEnv(dirname(__DIR__).'/.env');
 }
+
+Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
+Type::addType('uuid_binary', 'Ramsey\Uuid\Doctrine\UuidBinaryType');
 
 $_SERVER += $_ENV;
 $_SERVER['APP_ENV'] = $_ENV['APP_ENV'] = ($_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? null) ?: 'dev';

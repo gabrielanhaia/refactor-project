@@ -31,7 +31,7 @@ final class Version20200612183138 extends AbstractMigration
     {
         $this->addSql(
             'CREATE TABLE hotel (
-                    id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+                    id BINARY(16) PRIMARY KEY NOT NULL,
                     name VARCHAR(50) NOT NULL, 
                     address VARCHAR(255) DEFAULT NULL
                     )'

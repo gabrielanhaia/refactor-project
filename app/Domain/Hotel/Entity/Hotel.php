@@ -3,6 +3,7 @@
 namespace App\Domain\Hotel\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator;
 
 /**
  * @ORM\Entity(repositoryClass="App\Domain\Hotel\Contract\IHotelRepository")
@@ -12,9 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Hotel
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var \Ramsey\Uuid\UuidInterface $id
+     *
+     * @ORM\Id
+     * @ORM\Column(type="uuid_binary", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class=UuidOrderedTimeGenerator::class)
      */
     private $id;
 
@@ -29,9 +33,9 @@ class Hotel
     private $address;
 
     /**
-     * @return int|null
+     * @return \Ramsey\Uuid\UuidInterface
      */
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
