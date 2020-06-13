@@ -4,6 +4,7 @@ namespace App\Application\Hotel\Service;
 
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ListHotelsByCompanyService
@@ -22,9 +23,12 @@ class ListHotelsByCompanyService extends BaseCompanyService
      */
     public function execute(string $companyUuid)
     {
-        $companyId = Uuid::fromString($companyUuid);
-
-        $hotels = $this->hotelDomainService->listHotelsByCompany($companyId);
+        try {
+            $companyId = Uuid::fromString($companyUuid);
+            $hotels = $this->hotelDomainService->listHotelsByCompany($companyId);
+        } catch (\Exception $exception) {
+            return new JsonResponse([], Response::HTTP_NOT_FOUND);
+        }
 
         return new JsonResponse($hotels);
     }
