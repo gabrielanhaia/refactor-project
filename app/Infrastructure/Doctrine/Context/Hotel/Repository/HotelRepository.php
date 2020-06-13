@@ -7,11 +7,7 @@ use App\Domain\Hotel\Entity\Hotel;
 use App\Domain\Hotel\Entity\Review;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Query\ResultSetMapping;
 use Ramsey\Uuid\Doctrine\UuidBinaryOrderedTimeType;
-use Ramsey\Uuid\Rfc4122\UuidV1;
-use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /**
