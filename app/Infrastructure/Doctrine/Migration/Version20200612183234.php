@@ -26,9 +26,13 @@ final class Version20200612183234 extends AbstractMigration
 
     /**
      * @param Schema $schema
+     *
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function up(Schema $schema): void
     {
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+
         $this->addSql(
             'CREATE TABLE review (
                         id BINARY(16) PRIMARY KEY NOT NULL, 
@@ -42,9 +46,13 @@ final class Version20200612183234 extends AbstractMigration
 
     /**
      * @param Schema $schema
+     *
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function down(Schema $schema): void
     {
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+
         $this->addSql('DROP TABLE review');
     }
 }
