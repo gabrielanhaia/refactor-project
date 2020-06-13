@@ -30,40 +30,25 @@ class ReviewFixture extends Fixture implements DependentFixtureInterface
         $hotel1 = $this->getReference(HotelFixture::HOTEL_1);
         $hotel2 = $this->getReference(HotelFixture::HOTEL_2);
 
-        $review = new Review();
-        $review->setHotelId($hotel1->getId());
-        $review->setComment('Very nice stay');
-        $review->setScore(10);
+        $review = new Review(10, 'Very nice stay', $hotel1);
         $manager->persist($review);
 
-        $review = new Review();
-        $review->setHotelId($hotel1->getId());
-        $review->setComment('Average');
-        $review->setScore(5);
+        $review = new Review(9, 'Very nice stay, I enjoyed it a lot.', $hotel1);
         $manager->persist($review);
 
-        $review = new Review();
-        $review->setHotelId($hotel1->getId());
-        $review->setComment('Very nice stay, I enjoyed it a lot.');
-        $review->setScore(9);
+        $review = new Review(5, 'Avarage.', $hotel1);
         $manager->persist($review);
 
-        $review = new Review();
-        $review->setHotelId($hotel1->getId());
-        $review->setComment('Worst experience ever.');
-        $review->setScore(1);
+        $review = new Review(9, '', $hotel1);
         $manager->persist($review);
 
-        $review = new Review();
-        $review->setHotelId($hotel2->getId());
-        $review->setComment('The receptionist was not smiling.');
-        $review->setScore(5);
+        $review = new Review(1, 'Worst experience ever.', $hotel1);
         $manager->persist($review);
 
-        $review = new Review();
-        $review->setHotelId($hotel2->getId());
-        $review->setComment('Very nice stay, the reception was really fast.');
-        $review->setScore(10);
+        $review = new Review(5, 'The receptionist was not smiling.', $hotel2);
+        $manager->persist($review);
+
+        $review = new Review(10, 'Very nice stay, the reception was really fast.', $hotel2);
         $manager->persist($review);
 
         $manager->flush();

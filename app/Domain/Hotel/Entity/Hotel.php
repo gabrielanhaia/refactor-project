@@ -6,85 +6,67 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator;
 
 /**
- * @ORM\Entity(repositoryClass="App\Domain\Hotel\Contract\IHotelRepository")
+ * Hotel
  *
- * @author Gabriel Anhaia <anhaia.gabriel@gmail.com>
+ * @ORM\Table(name="hotel", indexes={@ORM\Index(name="company_id", columns={"company_id"})})
+ * @ORM\Entity
  */
 class Hotel
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface $id
+     * Hotel constructor.
+     *
+     * @param string $name
+     * @param string|null $address
+     * @param Company $company
+     */
+    public function __construct(string $name, string $address, Company $company)
+    {
+        $this->name = $name;
+        $this->address = $address;
+        $this->company = $company;
+    }
+
+    /**
+     * @var uuid_binary
      *
      * @ORM\Id
-     * @ORM\Column(type="uuid_binary", unique=true)
+     * @ORM\Column(name="id", type="uuid_binary", unique=true, nullable=false)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class=UuidOrderedTimeGenerator::class)
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=50, nullable=false)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
-     * @return \Ramsey\Uuid\UuidInterface
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
+     * @var Company $company
      *
-     * @return $this
+     * @ORM\ManyToOne(targetEntity="Company")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     * })
      */
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
+    private $company;
 
     /**
-     * @return string|null
-     */
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string|null $address
+     * One Hotel has many reviews.
      *
-     * @return $this
+     * @var Review[] $reviews
+     *
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="hotel")
      */
-    public function setAddress(?string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
+    private $reviews;
 }

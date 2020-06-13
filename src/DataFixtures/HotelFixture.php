@@ -9,6 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 use phpDocumentor\Reflection\Types\Self_;
 use Ramsey\Uuid\Uuid;
 
+
 /**
  * Class HotelFixture
  *
@@ -29,36 +30,23 @@ class HotelFixture extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        $hotel1 = new Hotel();
-        $hotel1->setName('Hotel Alexanderplatz 1');
-        $hotel1->setAddress('Alexanderplatz, 1, Berlin');
+        $company = $this->getReference(CompanyFixture::MAIN_COMPANY_TEST);
 
+        $hotel1 = new Hotel('Hotel 1', 'Alexanderplatz, 111, Berlin', $company);
         $manager->persist($hotel1);
         $this->addReference(self::HOTEL_1, $hotel1);
 
-        $hotel2 = new Hotel();
-        $hotel2->setName('Hotel Alexanderplatz 2');
-        $hotel2->setAddress('Alexanderplatz, 2, Berlin');
-
+        $hotel2 = new Hotel('Hotel 2', 'Alexanderplatz, 222, Berlin', $company);
         $manager->persist($hotel2);
         $this->addReference(self::HOTEL_2, $hotel2);
 
-        $hotel = new Hotel();
-        $hotel->setName('Hotel Alexanderplatz 3');
-        $hotel->setAddress('Alexanderplatz, 3, Berlin');
-
+        $hotel = new Hotel('Hotel 3', 'Alexanderplatz, 333, Berlin', $company);
         $manager->persist($hotel);
 
-        $hotel = new Hotel();
-        $hotel->setName('Hotel Alexanderplatz 4');
-        $hotel->setAddress('Alexanderplatz, 4, Berlin');
-
+        $hotel = new Hotel('Hotel 4', 'Alexanderplatz, 444, Berlin', $company);
         $manager->persist($hotel);
 
-        $hotel = new Hotel();
-        $hotel->setName('Hotel Alexanderplatz 5');
-        $hotel->setAddress('Alexanderplatz, 5, Berlin');
-
+        $hotel = new Hotel('Hotel 5', 'Alexanderplatz, 555, Berlin', $company);
         $manager->persist($hotel);
 
         $manager->flush();

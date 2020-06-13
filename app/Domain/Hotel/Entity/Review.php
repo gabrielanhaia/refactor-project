@@ -2,109 +2,63 @@
 
 namespace App\Domain\Hotel\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ReviewRepository")
+ * Review
  *
- * @author Gabriel Anhaia <anhaia.gabriel@gmail.com>
+ * @ORM\Table(name="review")
+ * @ORM\Entity
  */
 class Review
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface $id
+     * Review constructor.
      *
+     * @param int $score
+     * @param string|null $comment
+     * @param Hotel $hotel
+     */
+    public function __construct(int $score, string $comment, Hotel $hotel)
+    {
+        $this->score = $score;
+        $this->comment = $comment;
+        $this->hotel = $hotel;
+    }
+
+    /**
+     * @var uuid_binary
+     *
+     * @ORM\Column(name="id", type="uuid_binary", nullable=false)
      * @ORM\Id
-     * @ORM\Column(type="uuid_binary", unique=true)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class=UuidOrderedTimeGenerator::class)
+     *
      */
     private $id;
 
     /**
-     * @var \Ramsey\Uuid\UuidInterface $hotel_id
+     * @var int
      *
-     * @ORM\Column(type="uuid_binary")
-     */
-    private $hotel_id;
-
-    /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="score", type="integer", nullable=false)
      */
     private $score;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
     private $comment;
 
     /**
-     * @return \Ramsey\Uuid\UuidInterface
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return \Ramsey\Uuid\UuidInterface
-     */
-    public function getHotelId()
-    {
-        return $this->hotel_id;
-    }
-
-    /**
-     * @param $hotel_id
+     * @var Hotel $hotel
      *
-     * @return $this
+     * @ORM\ManyToOne(targetEntity="Hotel")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
+     * })
      */
-    public function setHotelId($hotel_id)
-    {
-        $this->hotel_id = $hotel_id;
-
-        return $this;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getScore(): ?int
-    {
-        return $this->score;
-    }
-
-    /**
-     * @param int $score
-     *
-     * @return $this
-     */
-    public function setScore(int $score): self
-    {
-        $this->score = $score;
-
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getComment(): ?string
-    {
-        return $this->comment;
-    }
-
-    /**
-     * @param string|null $comment
-     *
-     * @return $this
-     */
-    public function setComment(?string $comment): self
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
+    private $hotel;
 }
