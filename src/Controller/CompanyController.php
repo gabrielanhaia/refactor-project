@@ -3,8 +3,7 @@
 
 namespace App\Controller;
 
-use App\Application\Hotel\Service\ListCompaniesService;
-use App\Application\Hotel\Service\ListHotelsByCompanyService;
+use App\Application\Hotel\Service\HotelService as HotelApplicationService;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,30 +24,37 @@ class CompanyController extends AbstractController
      * List of companies available.
      *
      * @Route("/api/companies", name="companies_list")
-     * @param Request $request
      *
-     * @param ListCompaniesService $service
+     * @param HotelApplicationService $service
      *
      * @return JsonResponse
      * @throws Exception
      */
-    public function getCompanies(ListCompaniesService $service)
+    public function listCompanies(HotelApplicationService $service)
     {
-        return $service->execute();
+        $companiesResult = $service->listCompanies();
+
+        return new JsonResponse(['data' => $companiesResult]);
     }
 
     /**
      * List of hotels by company Id.
      *
-     * @Route("/api/companies/{companyId}/hotels", name="hotel_list")
+     * @Route(
+     *     "/api/companies/{companyId}/hotels",
+     *     name="hotel_list",
+     *     requirements={"companyId"="^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$"}
+     * )
      * @param string $companyId
-     * @param ListHotelsByCompanyService $service
+     * @param HotelApplicationService $service
      *
      * @return JsonResponse
      * @throws Exception
      */
-    public function getHotels(string $companyId, ListHotelsByCompanyService $service)
+    public function listHotelsByCompany(string $companyId, HotelApplicationService $service)
     {
-        return $service->execute($companyId);
+        $hotels = $service->listHotelsByCompany($companyId);
+
+        return new JsonResponse(['data' => $hotels]);
     }
 }

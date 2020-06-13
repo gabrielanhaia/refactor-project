@@ -34,3 +34,6 @@ services:
 
     App\Infrastructure\Doctrine\Context\Hotel\Repository\CompanyRepository: ~
     App\Domain\Hotel\Contract\ICompanyRepository: '@App\Infrastructure\Doctrine\Context\Hotel\Repository\CompanyRepository'
+
+    App\Infrastructure\Doctrine\Context\Hotel\Repository\HotelRepository: ~
+    App\Domain\Hotel\Contract\IHotelRepository: '@App\Infrastructure\Doctrine\Context\Hotel\Repository\HotelRepository'

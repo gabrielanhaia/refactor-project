@@ -5,6 +5,7 @@ namespace App\Domain\Hotel\Contract;
 
 use App\Domain\Hotel\Entity\Company;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Interface ICompanyRepository
@@ -22,7 +23,7 @@ interface ICompanyRepository
      *
      * @return Company
      */
-    public function listHotels(Uuid $companyId): ?Company;
+    public function listHotels(UuidInterface $companyId): ?Company;
 
     /**
      * Return a list of companies available.

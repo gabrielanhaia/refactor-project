@@ -89,4 +89,12 @@ class Hotel implements JsonSerializable
      * @ORM\OneToMany(targetEntity="Review", mappedBy="hotel")
      */
     private $reviews;
+
+    /**
+     * @return Review[]
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
 }

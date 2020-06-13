@@ -6,8 +6,8 @@ use App\Domain\Hotel\Contract\ICompanyRepository;
 use App\Domain\Hotel\Entity\Company;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Ramsey\Uuid\Rfc4122\UuidV1;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * @method Company|null find($id, $lockMode = null, $lockVersion = null)
@@ -34,7 +34,7 @@ class CompanyRepository extends ServiceEntityRepository implements ICompanyRepos
      *
      * @return Company|null
      */
-    public function listHotels(Uuid $companyId): ?Company
+    public function listHotels(UuidInterface $companyId): ?Company
     {
         try {
             $company = $this->find($companyId);
