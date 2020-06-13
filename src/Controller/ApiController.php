@@ -21,10 +21,6 @@ class ApiController extends AbstractController
      */
     public function getAverage(Request $request, ICompanyRepository $hotelRepository)
     {
-        $companyId = Uuid::fromString('2452a8aa-ad92-11ea-b52b-0242ac1e0003');
-
-        dd($hotelRepository->listHotels($companyId));
-
         $hotelId = $request->get('hotelId');
 
         if ($hotelId === null) {
@@ -52,16 +48,5 @@ class ApiController extends AbstractController
         }
 
         return new Response(json_encode($reviews));
-    }
-
-    /**
-     * @Route("/api/hotels", name="hotel_list")
-     */
-    public function getHotels(Request $request)
-    {
-        $em = $this->getDoctrine();
-        $hotels = $em->getConnection()->executeQuery('SELECT * FROM hotel')->fetchAll(\PDO::FETCH_ASSOC);
-
-        return new Response(json_encode($hotels));
     }
 }

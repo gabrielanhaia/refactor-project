@@ -49,4 +49,24 @@ class Company
      * @ORM\OneToMany(targetEntity="Hotel", mappedBy="company")
      */
     private $hotels;
+
+    /**
+     * Return a list of hotels related to a company.
+     *
+     * @return Hotel[]
+     */
+    public function getHotels()
+    {
+        return $this->hotels;
+    }
+
+    /**
+     * Return the company name.
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }

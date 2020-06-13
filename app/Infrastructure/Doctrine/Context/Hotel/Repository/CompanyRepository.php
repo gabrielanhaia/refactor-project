@@ -32,16 +32,18 @@ class CompanyRepository extends ServiceEntityRepository implements ICompanyRepos
      *
      * @param Uuid $companyId
      *
-     * @return Company
+     * @return Company|null
      */
-    public function listHotels(Uuid $companyId): Company
+    public function listHotels(Uuid $companyId): ?Company
     {
-        dd($this->find($companyId));
+        try {
+            $company = $this->find($companyId);
+        } catch (\Exception $exception) {
+            return null;
+        }
 
-        $company = $this->find($companyId->getBytes());
-dd($company);
         if (empty($company)) {
-            // TODO: Implement repository exception.
+            return null;
         }
 
         return $company;

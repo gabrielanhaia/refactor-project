@@ -3,6 +3,7 @@
 namespace App\Domain\Hotel\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 use Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator;
 
 /**
@@ -11,7 +12,7 @@ use Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator;
  * @ORM\Table(name="hotel", indexes={@ORM\Index(name="company_id", columns={"company_id"})})
  * @ORM\Entity
  */
-class Hotel
+class Hotel implements JsonSerializable
 {
     /**
      * Hotel constructor.
@@ -69,4 +70,23 @@ class Hotel
      * @ORM\OneToMany(targetEntity="Review", mappedBy="hotel")
      */
     private $reviews;
+
+    /**
+     * Specify data which should be serialized to JSON.
+     *
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     *               which is a value of any type other than a resource.
+     *
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'company_name' => $this->company->getName(),
+        ];
+    }
 }

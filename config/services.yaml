@@ -26,5 +26,11 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    App\Application\Hotel\Service\:
+        resource: '../app/Application/Hotel/Service'
+
+    App\Domain\Hotel\Service\:
+        resource: '../app/Domain/Hotel/Service'
+
     App\Infrastructure\Doctrine\Context\Hotel\Repository\CompanyRepository: ~
     App\Domain\Hotel\Contract\ICompanyRepository: '@App\Infrastructure\Doctrine\Context\Hotel\Repository\CompanyRepository'

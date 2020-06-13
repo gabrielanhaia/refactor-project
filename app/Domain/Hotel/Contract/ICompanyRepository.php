@@ -22,5 +22,5 @@ interface ICompanyRepository
      *
      * @return Company
      */
-    public function listHotels(Uuid $companyId): Company;
+    public function listHotels(Uuid $companyId): ?Company;
 }
