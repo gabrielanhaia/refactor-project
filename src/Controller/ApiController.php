@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Domain\Hotel\Contract\IHotelRepository;
-use App\Infrastructure\Doctrine\Context\Hotel\Repository\HotelRepository;
+use App\Domain\Hotel\Contract\ICompanyRepository;
+use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,14 +14,16 @@ class ApiController extends AbstractController
     /**
      * @Route("/api/average", name="average")
      * @param Request $request
-     * @param IHotelRepository|HotelRepository $hotelRepository
+     * @param ICompanyRepository $hotelRepository
      *
      * @return Response
      * @throws \Exception
      */
-    public function getAverage(Request $request, IHotelRepository $hotelRepository)
+    public function getAverage(Request $request, ICompanyRepository $hotelRepository)
     {
-        dd($hotelRepository->findAll());
+        $companyId = Uuid::fromString('2452a8aa-ad92-11ea-b52b-0242ac1e0003');
+
+        dd($hotelRepository->listHotels($companyId));
 
         $hotelId = $request->get('hotelId');
 

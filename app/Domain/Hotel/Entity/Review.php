@@ -28,9 +28,9 @@ class Review
     }
 
     /**
-     * @var uuid_binary
+     * @var uuid_binary_ordered_time
      *
-     * @ORM\Column(name="id", type="uuid_binary", nullable=false)
+     * @ORM\Column(name="id", type="uuid_binary_ordered_time", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class=UuidOrderedTimeGenerator::class)

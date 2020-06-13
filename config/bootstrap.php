@@ -19,7 +19,7 @@ if (is_array($env = @include dirname(__DIR__).'/.env.local.php') && (!isset($env
 }
 
 Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
-Type::addType('uuid_binary', 'Ramsey\Uuid\Doctrine\UuidBinaryType');
+Type::addType('uuid_binary_ordered_time', 'Ramsey\Uuid\Doctrine\UuidBinaryOrderedTimeType');
 
 $_SERVER += $_ENV;
 $_SERVER['APP_ENV'] = $_ENV['APP_ENV'] = ($_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? null) ?: 'dev';

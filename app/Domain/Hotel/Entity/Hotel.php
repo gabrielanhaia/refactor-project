@@ -28,10 +28,10 @@ class Hotel
     }
 
     /**
-     * @var uuid_binary
+     * @var uuid_binary_ordered_time
      *
      * @ORM\Id
-     * @ORM\Column(name="id", type="uuid_binary", unique=true, nullable=false)
+     * @ORM\Column(name="id", type="uuid_binary_ordered_time", unique=true, nullable=false)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class=UuidOrderedTimeGenerator::class)
      */

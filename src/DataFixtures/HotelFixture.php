@@ -5,9 +5,8 @@ namespace App\DataFixtures;
 
 use App\Domain\Hotel\Entity\Hotel;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use phpDocumentor\Reflection\Types\Self_;
-use Ramsey\Uuid\Uuid;
 
 
 /**
@@ -17,7 +16,7 @@ use Ramsey\Uuid\Uuid;
  *
  * @author Gabriel Anhaia <anhaia.gabriel@gmail.com>
  */
-class HotelFixture extends Fixture
+class HotelFixture extends Fixture implements DependentFixtureInterface
 {
     /** @var string HOTEL_2 */
     public const HOTEL_1 = 'HOTEL_1';
@@ -50,5 +49,18 @@ class HotelFixture extends Fixture
         $manager->persist($hotel);
 
         $manager->flush();
+    }
+
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on
+     *
+     * @return class-string[]
+     */
+    public function getDependencies()
+    {
+        return [
+            CompanyFixture::class
+        ];
     }
 }
