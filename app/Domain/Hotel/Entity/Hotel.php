@@ -29,6 +29,25 @@ class Hotel implements JsonSerializable
     }
 
     /**
+     * Specify data which should be serialized to JSON.
+     *
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     *               which is a value of any type other than a resource.
+     *
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'company' => $this->company,
+        ];
+    }
+
+    /**
      * @var uuid_binary_ordered_time
      *
      * @ORM\Id
@@ -70,23 +89,4 @@ class Hotel implements JsonSerializable
      * @ORM\OneToMany(targetEntity="Review", mappedBy="hotel")
      */
     private $reviews;
-
-    /**
-     * Specify data which should be serialized to JSON.
-     *
-     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed data which can be serialized by <b>json_encode</b>,
-     *               which is a value of any type other than a resource.
-     *
-     * @since 5.4.0
-     */
-    public function jsonSerialize()
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'company_name' => $this->company->getName(),
-        ];
-    }
 }

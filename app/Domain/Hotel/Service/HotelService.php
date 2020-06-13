@@ -5,6 +5,8 @@ namespace App\Domain\Hotel\Service;
 
 
 use App\Domain\Hotel\Contract\ICompanyRepository;
+use App\Domain\Hotel\Entity\Company;
+use App\Domain\Hotel\Entity\Hotel;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 
@@ -35,7 +37,7 @@ class HotelService
      *
      * @param Uuid $companyId
      *
-     * @return array
+     * @return array|Hotel[]
      * @throws \Exception
      */
     public function listHotelsByCompany(Uuid $companyId): array
@@ -50,5 +52,15 @@ class HotelService
         $hotels = $company->getHotels()->getValues() ?? [];
 
         return $hotels;
+    }
+
+    /**
+     * Return a list of all companies.
+     *
+     * @return array|Company[]
+     */
+    public function listCompanies(): array
+    {
+        return $this->companyRepository->listCompanies();
     }
 }

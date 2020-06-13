@@ -48,4 +48,16 @@ class CompanyRepository extends ServiceEntityRepository implements ICompanyRepos
 
         return $company;
     }
+
+    /**
+     * Return a list of companies available.
+     *
+     * @return array
+     */
+    public function listCompanies(): array
+    {
+        $companies = $this->findAll() ?? [];
+
+        return $companies;
+    }
 }

@@ -23,4 +23,11 @@ interface ICompanyRepository
      * @return Company
      */
     public function listHotels(Uuid $companyId): ?Company;
+
+    /**
+     * Return a list of companies available.
+     *
+     * @return array
+     */
+    public function listCompanies(): array;
 }
