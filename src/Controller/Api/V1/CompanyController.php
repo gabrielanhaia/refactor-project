@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Api\V1;
 
 use App\Application\Hotel\Service\HotelService as HotelApplicationService;
 use Exception;
@@ -23,7 +23,7 @@ class CompanyController extends AbstractController
     /**
      * List of companies available.
      *
-     * @Route("/api/companies", name="companies_list")
+     * @Route("/api/v1/companies", name="companies_list")
      *
      * @param HotelApplicationService $service
      *
@@ -41,7 +41,7 @@ class CompanyController extends AbstractController
      * List of hotels by company Id.
      *
      * @Route(
-     *     "/api/companies/{companyId}/hotels",
+     *     "/api/v1/companies/{companyId}/hotels",
      *     name="hotel_list",
      *     requirements={"companyId"="^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$"}
      * )
