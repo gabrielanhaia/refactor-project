@@ -1,4 +1,4 @@
-# Test task for senior backend developer 
+# Test task 
 This project provides an API for hotels to get their reviews and average score.
 Also, for chain hotels it should be possible to get a list of their hotels. A chain hotel is a collection of hotels that belong to one group.
 
