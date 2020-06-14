@@ -34,6 +34,8 @@ class WidgetController extends AbstractController
         $rendered = $this->renderView('widgets/hotel_average.js.twig', ['hotel_id' => $hotelId]);
         $response = new Response($rendered);
         $response->headers->set('Content-Type', 'text/javascript');
+        $response->headers->set('Pragma', 'public');
+        $response->headers->set('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + (60 * 60)));
 
         return $response;
     }

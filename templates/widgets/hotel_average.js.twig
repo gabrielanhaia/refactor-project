@@ -1,12 +1,25 @@
-(function() {
+(function () {
     var apiUrl = "http://localhost:8000/api/v1/hotels/{{ hotel_id }}/avarage"
 
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", apiUrl, false );
-    xmlHttp.send( null );
+    var timeNow = (new Date()).getTime();
+    timeNow = parseInt(timeNow);
+    var lastExpiration = parseInt(window.localStorage.getItem('expiration_time_average'));
 
-    var response = JSON.parse(xmlHttp.response);
-    var average = response.data.average
+    var average = 0
+    if (timeNow >= lastExpiration) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", apiUrl, false);
+        xmlHttp.send(null);
+        var response = JSON.parse(xmlHttp.response);
+
+        var newExpirationTime = timeNow + (3600 * 1000);
+        window.localStorage.setItem('response_average', response.data.average);
+        window.localStorage.setItem('expiration_time_average', newExpirationTime);
+
+        average = response.data.average
+    } else {
+        average = window.localStorage.getItem('response_average')
+    }
 
     var div = document.createElement("div");
     div.style.width = "100px";
