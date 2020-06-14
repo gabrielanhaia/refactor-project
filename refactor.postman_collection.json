@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "4795a5a5-3d09-4001-adfb-a07bff9d8612",
+		"name": "Customer Alliance ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Hotels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/companies/2452a8aa-ad92-11ea-b52b-0242ac1e0003/hotels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"companies",
+								"2452a8aa-ad92-11ea-b52b-0242ac1e0003",
+								"hotels"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Hotel",
+			"item": [
+				{
+					"name": "Show hotel avarage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/hotels/246e4c36-ad92-11ea-8334-0242ac1e0003/avarage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"hotels",
+								"246e4c36-ad92-11ea-8334-0242ac1e0003",
+								"avarage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/hotels/246e4c36-ad92-11ea-8334-0242ac1e0003/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"hotels",
+								"246e4c36-ad92-11ea-8334-0242ac1e0003",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
