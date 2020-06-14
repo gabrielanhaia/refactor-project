@@ -6,10 +6,7 @@ namespace App\Unit\TestsApplication\Hotel\Service;
 use App\Application\Hotel\Service\HotelService as HotelApplicationService;
 use App\Domain\Hotel\Service\HotelService as HotelDomainService;
 use App\Tests\TestCase;
-use Ramsey\Uuid\Rfc4122\UuidV1;
-use Ramsey\Uuid\Rfc4122\UuidV4;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidFactory;
 
 /**
  * Class HotelServiceTest
