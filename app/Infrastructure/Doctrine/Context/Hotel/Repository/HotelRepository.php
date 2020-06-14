@@ -48,4 +48,16 @@ class HotelRepository extends ServiceEntityRepository implements IHotelRepositor
 
         return (float) $result;
     }
+
+    /**
+     * Return a hotel by id.
+     *
+     * @param UuidInterface $hotelId
+     *
+     * @return Hotel|null
+     */
+    public function getHotel(UuidInterface $hotelId): ?Hotel
+    {
+        return $this->find($hotelId);
+    }
 }

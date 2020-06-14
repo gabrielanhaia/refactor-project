@@ -95,6 +95,6 @@ class Hotel implements JsonSerializable
      */
     public function getReviews()
     {
-        return $this->reviews;
+        return $this->reviews->getValues();
     }
 }

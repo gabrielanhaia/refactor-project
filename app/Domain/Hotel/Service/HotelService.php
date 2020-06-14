@@ -8,6 +8,7 @@ use App\Domain\Hotel\Contract\ICompanyRepository;
 use App\Domain\Hotel\Contract\IHotelRepository;
 use App\Domain\Hotel\Entity\Company;
 use App\Domain\Hotel\Entity\Hotel;
+use App\Domain\Hotel\Entity\Review;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -84,5 +85,24 @@ class HotelService
     public function getHotelAverage(UuidInterface $hotelId): float
     {
         return (float) $this->hotelRepository->getTotalHotelAverage($hotelId);
+    }
+
+    /**
+     * List reviews in a hotel.
+     *
+     * @param UuidInterface $hotelId
+     *
+     * @return array|Review[]
+     * @throws \Exception
+     */
+    public function listReviewsByHotel(UuidInterface $hotelId): array
+    {
+        $hotel = $this->hotelRepository->getHotel($hotelId);
+
+        if (empty($hotel)) {
+            throw new \Exception('Hotel not found.');
+        }
+
+        return $hotel->getReviews();
     }
 }

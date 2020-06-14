@@ -43,4 +43,27 @@ class HotelController extends AbstractController
             'data' => ['avarage' => $average]
         ]);
     }
+
+    /**
+     * Get the hotel reviews.
+     *
+     * @Route(
+     *     "/api/hotels/{hotelId}/reviews",
+     *     name="hotel_reviews",
+     *     requirements={"hotelId"="^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$"}
+     * )
+     * @param string $hotelId
+     * @param HotelApplicationService $service
+     *
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function getReviews(string $hotelId, HotelApplicationService $service)
+    {
+        $reviews = $service->listReviewsByHotel($hotelId);
+
+        return new JsonResponse([
+            'data' => $reviews
+        ]);
+    }
 }

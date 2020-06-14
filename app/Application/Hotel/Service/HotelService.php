@@ -3,6 +3,7 @@
 
 namespace App\Application\Hotel\Service;
 
+use App\Domain\Hotel\Entity\Review;
 use App\Domain\Hotel\Service\HotelService as HotelDomainService;
 use Ramsey\Uuid\Rfc4122\UuidV1;
 use Ramsey\Uuid\Rfc4122\UuidV4;
@@ -41,6 +42,8 @@ class HotelService
     }
 
     /**
+     * List hotels in a company.
+     *
      * @param string $companyUuid
      *
      * @return array|null
@@ -55,12 +58,40 @@ class HotelService
         return $hotels;
     }
 
-    public function getHotelAverage(string $hotelUuid): float
+    /**
+     * Get the average of reviews by hotel.
+     *
+     * @param string $hotelUuId
+     *
+     * @return float
+     */
+    public function getHotelAverage(string $hotelUuId): float
     {
-        $hotelId = UuidV4::fromString($hotelUuid);
+        $hotelId = UuidV4::fromString($hotelUuId);
+
+        // TODO: Implement it with a custom exeption to catch the NotFound errors to don't expose the wrong resources.
 
         $average = $this->hotelDomainService->getHotelAverage($hotelId);
 
         return $average;
+    }
+
+    /**
+     * List reviews by hotel.
+     *
+     * @param string $hotelUuId Hotel identity string.
+     *
+     * @return array|Review[]
+     * @throws \Exception
+     */
+    public function listReviewsByHotel(string $hotelUuId): array
+    {
+        $hotelId = UuidV4::fromString($hotelUuId);
+
+        $reviews = $this->hotelDomainService->listReviewsByHotel($hotelId);
+
+        // TODO: Implement it with a custom exeption to catch the NotFound errors to don't expose the wrong resources.
+
+        return $reviews;
     }
 }
