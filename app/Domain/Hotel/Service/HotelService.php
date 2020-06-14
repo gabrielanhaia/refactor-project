@@ -1,15 +1,13 @@
 <?php
 
-
 namespace App\Domain\Hotel\Service;
-
 
 use App\Domain\Hotel\Contract\ICompanyRepository;
 use App\Domain\Hotel\Contract\IHotelRepository;
 use App\Domain\Hotel\Entity\Company;
 use App\Domain\Hotel\Entity\Hotel;
 use App\Domain\Hotel\Entity\Review;
-use Doctrine\Common\Collections\ArrayCollection;
+use Ramsey\Uuid\Rfc4122\UuidV4;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -46,7 +44,7 @@ class HotelService
     /**
      * Return a list of hotels in a company.
      *
-     * @param Uuid $companyId
+     * @param UuidInterface $companyId
      *
      * @return array|Hotel[]
      * @throws \Exception

@@ -5,7 +5,6 @@ namespace App\Application\Hotel\Service;
 
 use App\Domain\Hotel\Entity\Review;
 use App\Domain\Hotel\Service\HotelService as HotelDomainService;
-use Ramsey\Uuid\Rfc4122\UuidV1;
 use Ramsey\Uuid\Rfc4122\UuidV4;
 use Ramsey\Uuid\Uuid;
 
@@ -51,7 +50,7 @@ class HotelService
      */
     public function listHotelsByCompany(string $companyUuid): ?array
     {
-        $companyId = Uuid::fromString($companyUuid);
+        $companyId = UuidV4::fromString($companyUuid);
 
         $hotels = $this->hotelDomainService->listHotelsByCompany($companyId);
 
@@ -69,7 +68,7 @@ class HotelService
     {
         $hotelId = UuidV4::fromString($hotelUuId);
 
-        // TODO: Implement it with a custom exeption to catch the NotFound errors to don't expose the wrong resources.
+        // TODO: Implement it with a custom exception to catch the NotFound errors to don't expose the wrong resources.
 
         $average = $this->hotelDomainService->getHotelAverage($hotelId);
 
@@ -90,7 +89,7 @@ class HotelService
 
         $reviews = $this->hotelDomainService->listReviewsByHotel($hotelId);
 
-        // TODO: Implement it with a custom exeption to catch the NotFound errors to don't expose the wrong resources.
+        // TODO: Implement it with a custom exception to catch the NotFound errors to don't expose the wrong resources.
 
         return $reviews;
     }
